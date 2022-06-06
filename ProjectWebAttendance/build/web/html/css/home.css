@@ -1,3 +1,11 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jun 6, 2022, 8:41:36 PM
+    Author     : minht
+*/
 @import url(http://fonts.googleapis.com/css?family=Mako);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 
@@ -243,4 +251,8 @@ ul#menu li a:hover, ul#menu li a.active {
 
 .Order{
   border: 1px solid black;
+  text-align: center;
+  margin: 50px;
 }
+
+
