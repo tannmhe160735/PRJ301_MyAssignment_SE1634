@@ -6,7 +6,19 @@
     </servlet>
     <servlet>
         <servlet-name>HomeDBContext</servlet-name>
-        <servlet-class>dal.HomeDBContext</servlet-class>
+        <servlet-class>controller.HomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MenuController</servlet-name>
+        <servlet-class>controller.MenuController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TimeTableController</servlet-name>
+        <servlet-class>controller.TimeTableController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AttendanceViewController</servlet-name>
+        <servlet-class>controller.AttendanceViewController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -15,6 +27,18 @@
     <servlet-mapping>
         <servlet-name>HomeDBContext</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MenuController</servlet-name>
+        <url-pattern>/menu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TimeTableController</servlet-name>
+        <url-pattern>/timetable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AttendanceViewController</servlet-name>
+        <url-pattern>/attendanceview</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

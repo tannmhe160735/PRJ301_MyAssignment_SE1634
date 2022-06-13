@@ -26,11 +26,11 @@
             <label for="show-menu" class="close"><span class="fa fa-times"></label>
             <ul id="menu">
                 <li><a class="active" href="home">Home</a></li>
-<!--                                <li><a href="#">Old School</a></li>
-                                <li><a href="#">Pastel</a></li>
-                                <li><a href="#">Archive</a></li>
-                                <li><a href="#">Empty</a></li>
-                                <li><a href="#">Also Empty</a></li>-->
+                <!--                                <li><a href="#">Old School</a></li>
+                                                <li><a href="#">Pastel</a></li>
+                                                <li><a href="#">Archive</a></li>
+                                                <li><a href="#">Empty</a></li>
+                                                <li><a href="#">Also Empty</a></li>-->
             </ul>
         </nav>
         <!-- // -->
@@ -62,9 +62,9 @@
             <div id="footer">
                 <p>&copy; Power By</p>
                 <!--Credits below must be kept under CC-NC 3.0 License-->
-                <p><a href="https://fpt.edu.vn/"> FPT University</a></p>
-            </div>
+                <p><a href="https://fpt.edu.vn/"> TannmHE160735</a></p>
+            </div> 
             <!-- // -->
-            
+
     </body>
 </html>
