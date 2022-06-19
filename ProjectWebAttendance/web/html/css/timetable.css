@@ -251,3 +251,7 @@ ul#menu li a:hover, ul#menu li a.active {
     border: 1px;
     padding: 10px;
 }
+
+.activity-table{
+    width:100%;
+}

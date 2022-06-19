@@ -66,8 +66,8 @@
             </p>    
             </div>
             <div class="activity-table">
-                <table border="1">
-                <thead>
+                <table style="width:100%">
+                    <thead style="background-color: #39ace7; color: white;">
                     <tr>
                         <th>Slot</th>
                         <th>MON</th>
@@ -82,13 +82,13 @@
                 <tbody>
                     <tr>
                         <td>Slot 1</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
                     </tr>
                     <tr>
                         <td>Slot 2</td>

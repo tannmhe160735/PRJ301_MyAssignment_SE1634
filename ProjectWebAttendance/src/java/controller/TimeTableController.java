@@ -5,6 +5,7 @@
 
 package controller;
 
+import dal.StudentDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -53,6 +54,9 @@ public class TimeTableController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String sname = request.getParameter("username");
+        StudentDBContext StuDB = new StudentDBContext();
+        request.setAttribute("stu", StuDB.listBySname(sname));
         request.getRequestDispatcher("html/timetable.jsp").forward(request, response);
     } 
 

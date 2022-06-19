@@ -47,8 +47,8 @@
                 <h3 style="color: #56baed;">Reports</h3>
             </div>
             <div class="Order-list">               
-                    <a href="timetable">Weekly timetable</a><br>
-                    <a href="attendanceview">Attendance report</a>
+                    <a href="timetable?name=${sessionScope.account.username}">Weekly timetable</a><br>
+                    <a href="attendanceview?name=${sessionScope.account.username}">Attendance report</a>
             </div>                
         </div>
     
