@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Created by Tannmhe160735</title>
         <link rel="stylesheet" href="html/css/login.css">
     </head>
     <div class="wrapper fadeInDown">

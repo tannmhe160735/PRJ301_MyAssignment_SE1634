@@ -16,21 +16,25 @@ import model.Login;
  *
  * @author minht
  */
-public class LoginDBContext extends DBContext<Login>{
+public class LoginDBContext extends DBContext<Login> {
 
     public Login getAccountByUsernamePassword(String username, String password) {
         try {
-            String sql = "select username, name from Login\n"
+            String sql = "SELECT [username]\n"
+                    + "      ,[password]\n"
+                    + "      ,[isAdmin]\n"
+                    + "      ,[name]\n"
+                    + "  FROM [Login]\n"
                     + "where username = ? and password = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
             ResultSet rs = stm.executeQuery();
-            if(rs.next())
-            {
+            if (rs.next()) {
                 Login account = new Login();
                 account.setUsername(rs.getString("username"));
                 account.setName(rs.getString("name"));
+                account.setIdAdmin(rs.getBoolean("isAdmin"));
                 return account;
             }
         } catch (SQLException ex) {
@@ -38,7 +42,7 @@ public class LoginDBContext extends DBContext<Login>{
         }
         return null;
     }
-    
+
     @Override
     public ArrayList<Login> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -63,5 +67,5 @@ public class LoginDBContext extends DBContext<Login>{
     public void delete(Login model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

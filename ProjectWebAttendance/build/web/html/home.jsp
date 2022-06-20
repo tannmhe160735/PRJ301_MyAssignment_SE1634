@@ -4,6 +4,7 @@
     Author     : minht
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Pastel by MLPdesign</title>
+        <title>Created by Tannmhe160735</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="Description" lang="en" content="open source html and css template">
         <meta name="author" content="mlp design">
@@ -48,7 +49,13 @@
             </div>
             <div class="Order-list">               
                     <a href="timetable?name=${sessionScope.account.username}">Weekly timetable</a><br>
-                    <a href="attendanceview?name=${sessionScope.account.username}">Attendance report</a>
+                    <c:if test="${sessionScope.account.idAdmin eq false}">
+                        <a href="attendanceview?sid=${sessionScope.account.username}">Attendance report</a>
+                    </c:if>
+                    <c:if test="${sessionScope.account.idAdmin eq true}">
+                        <a href="takea?tid=${sessionScope.account.username}">Take Attendance</a>
+                    </c:if>
+                    
             </div>                
         </div>
     

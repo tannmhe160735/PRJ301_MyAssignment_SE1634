@@ -11,7 +11,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Pastel by MLPdesign</title>
+        <title>Created by Tannmhe160735</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="Description" lang="en" content="open source html and css template">
         <meta name="author" content="mlp design">

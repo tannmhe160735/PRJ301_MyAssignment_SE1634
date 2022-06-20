@@ -241,24 +241,13 @@ ul#menu li a:hover, ul#menu li a.active {
 	}
 }
 
-.attendance-title{
-    text-align: center;
+.take-attendance-title{
+    text-align: center;   
 }
 
 .activity {
     margin: auto;
     width: 60%;
+    border: 1px;
     padding: 10px;
-    display: flex;
-}
-
-.activity-first-table h2{
-    text-align: center;
-    padding: 15px;
-}
-
-.activity-second-table h2{
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 24px;
 }
