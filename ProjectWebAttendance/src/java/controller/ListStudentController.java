@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import java.util.ArrayList;
 import model.Student;
 
@@ -73,10 +74,13 @@ public class ListStudentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        boolean attendance = Boolean.parseBoolean(request.getParameter("attendance"));
-        String sid = request.getParameter("sid");
         StudentDBContext Studb = new StudentDBContext();
-        Studb.AttendanceBySid(attendance, sid);
+        String[] indexs = request.getParameterValues("index");
+        for (String index : indexs) {
+            String sid = request.getParameter("sid"+index);
+            boolean attendence = Boolean.parseBoolean(request.getParameter("attendence"+index));
+            Studb.AttendanceBySid(attendence, sid);
+        }
         request.getRequestDispatcher("html/home.jsp").forward(request, response);
         
     }

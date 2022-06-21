@@ -54,14 +54,15 @@
                         <th>Name</th>
                         <th>Attendance</th>
                     </thead>
-                    <c:forEach items="${requestScope.stus}" var="s">
+                    <c:forEach items="${requestScope.stus}" var="s" varStatus="loop">
                         <tr class="a-class">
-                            <td>${s.sid}<input type="hidden" name="sid" value="${s.sid}"></td>
+                            <td>${s.sid}<input type="hidden" name="sid${loop.index}" value="${s.sid}"></td>
                             <td><img src="${s.simage}" style="width: 120px; height: 150px"/></td>
                             <td>${s.sname}</td>
-                            <td><input type="checkbox" name="attendence" value="false" /> <a style="color: red">absent</a>
-                                <input type="checkbox" name="attendence" value="true" /> <a style="color: green">attend</a></td>
+                            <td><input type="radio" name="attendence${loop.index}" value="true" /> <a style="color: green">attend</a>
+                                <input type="radio" name="attendence${loop.index}" value="false" /> <a style="color: red">absent</a></td>
                         </tr> 
+                        <input type="hidden" name="index" value="${loop.index}">
                     </c:forEach>               
             </table><br>
             <div class="button">
