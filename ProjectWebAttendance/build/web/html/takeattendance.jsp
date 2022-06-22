@@ -7,7 +7,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
     <html lang="en">
         <head>
             <meta charset="utf-8">
@@ -50,16 +49,18 @@
                             <tr>
                                 <th>No</th>
                                 <th>Class</th>
+                                <th>View Class</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach items="${requestScope.classes}" var="c"  >
-                            <tr>
-                                <td>${c.cid}</td>
-                                <td><a href="liststu?cid=${c.cid}">${c.cname}</a></td>
-                                <td style="color: red;">Not yet</td>
-                            </tr>
+                                <tr>
+                                    <td>${c.cid}</td>
+                                    <td><a href="liststu?cid=${c.cid}">${c.cname}</a></td>
+                                    <td><a href="viewc?cid=${c.cid}">${c.cname}</a></td>
+                                    <td style="color: red;">Not yet</td>
+                                </tr>
                             </c:forEach>
                         </tbody>
                     </table>
@@ -71,5 +72,5 @@
             <p>&copy; Power By</p>
             <!--Credits below must be kept under CC-NC 3.0 License-->
             <p><a href="https://fpt.edu.vn/"> TannmHE160735</a></p>
-        </div
+        </div>
     </html>

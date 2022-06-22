@@ -14,14 +14,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.Class;
 import model.Student;
 
 /**
  *
  * @author minht
  */
-public class TakeAttendanceController extends HttpServlet {
+public class ViewClassController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +37,10 @@ public class TakeAttendanceController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet TakeAttendanceController</title>");  
+            out.println("<title>Servlet ViewClassController</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet TakeAttendanceController at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ViewClassController at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,11 +57,11 @@ public class TakeAttendanceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String tid = request.getParameter("tid");
-        ClassDBContext Cdb = new ClassDBContext();
-        ArrayList<Class> classes = Cdb.listByTid(tid);
-        request.setAttribute("classes", classes);
-        request.getRequestDispatcher("html/takeattendance.jsp").forward(request, response);
+        String cid = request.getParameter("cid");
+        StudentDBContext Studb = new StudentDBContext();
+        ArrayList<Student> stus = Studb.listByCLass(cid);
+        request.setAttribute("stus", stus);
+        request.getRequestDispatcher("html/viewclass.jsp").forward(request, response);
     } 
 
     /** 

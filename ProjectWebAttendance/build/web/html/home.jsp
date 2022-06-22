@@ -53,7 +53,7 @@
                         <a href="attendanceview?sid=${sessionScope.account.username}">Attendance report</a>
                     </c:if>
                     <c:if test="${sessionScope.account.idAdmin eq true}">
-                        <a href="takea?tid=${sessionScope.account.username}">Take Attendance</a>
+                        <a href="takea?tid=${sessionScope.account.username}">Take Attendance</a><br>                        
                     </c:if>
                     
             </div>                

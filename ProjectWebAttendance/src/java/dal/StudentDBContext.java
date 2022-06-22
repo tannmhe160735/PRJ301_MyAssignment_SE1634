@@ -63,6 +63,7 @@ public class StudentDBContext extends DBContext<Student> {
                 s.setSid(rs.getString("sid"));
                 s.setSimage(rs.getString("simage"));
                 s.setSname(rs.getString("sname"));
+                s.setAttendence(rs.getBoolean("attendance"));
                 stus.add(s);
             }
         } catch (SQLException ex) {
@@ -89,9 +90,23 @@ public class StudentDBContext extends DBContext<Student> {
 
     @Override
     public ArrayList<Student> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Student> stus = new ArrayList<>();
+        try {
+            String sql = "select * from Student where sid = 'tannmhe160735'";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Student s = new Student();
+                s.setSid(rs.getString("sid"));
+                s.setSimage(rs.getString("simage"));
+                s.setSname(rs.getString("sname"));
+                stus.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return stus;
     }
-
     @Override
     public Student get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
