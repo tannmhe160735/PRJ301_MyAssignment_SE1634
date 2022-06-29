@@ -59,7 +59,7 @@
                             <td>${s.sid}</td>
                             <td><img src="${s.simage}" style="width: 120px; height: 150px"/></td>
                             <td>${s.sname}</td>
-                            <td>${s.classes}</td>
+                            <td>${s.classes.cname}</td>
                             <c:if test="${s.attendence eq true}">
                                 <td style="color: green;">attended</td>
                             </c:if>

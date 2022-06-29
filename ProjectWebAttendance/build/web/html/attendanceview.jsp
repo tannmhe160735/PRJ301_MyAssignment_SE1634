@@ -84,7 +84,7 @@
                             <th>ROOM</th>
                             <th>LECTURE</th>
                             <th>GROUP NAME</th>
-                            <th>ATTEDANCE STATUS</th>
+                            <th>ATTENDANCE STATUS</th>
                         </tr>
                     </thead>
                     <tbody>

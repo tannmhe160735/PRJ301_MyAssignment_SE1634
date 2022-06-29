@@ -3,19 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/web/html/home.jsp</file>
+            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/web/html/css/home.css</file>
+            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/dal/StudentDBContext.java</file>
+            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/dal/SubjectDBContext.java</file>
+            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/model/Subject.java</file>
             <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/web/html/viewclass.jsp</file>
+            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/model/Attendance.java</file>
             <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/model/Student.java</file>
             <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/web/html/takeattendance.jsp</file>
-            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/dal/LoginDBContext.java</file>
-            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/web/html/liststudent.jsp</file>
-            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/controller/HomeController.java</file>
-            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/dal/StudentDBContext.java</file>
-            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/controller/TakeAttendanceController.java</file>
-            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/controller/ViewClassController.java</file>
-            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/controller/ListStudentController.java</file>
             <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/web/html/attendanceview.jsp</file>
-            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/controller/LoginController.java</file>
+            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/src/java/dal/AttendanceDBContext.java</file>
+            <file>file:/C:/Users/minht/OneDrive/Documents/GitHub/PRJ301_MyAssignment_SE1634/ProjectWebAttendance/web/html/css/attendanceview.css</file>
         </group>
     </open-files>
 </project-private>

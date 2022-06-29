@@ -51,18 +51,24 @@ public class StudentDBContext extends DBContext<Student> {
 
     public ArrayList<Student> listByCLass(String cid) {
         ArrayList<Student> stus = new ArrayList<>();
+        ArrayList<Class> cls = new ArrayList<>();
         try {
-            String sql = "select s.sid, s.simage, s.sname, s.class, s.attendance \n"
+            String sql = "select s.sid, s.simage, s.sname, s.class, s.attendance, c.cid, c.cname\n"
                     + "from Student s, Class c\n"
                     + "where s.class = c.cid and c.cid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, cid);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
+                Class c = new Class();
+                c.setCid(rs.getString("cid"));
+                c.setCname(rs.getString("cname"));
+                cls.add(c);
                 Student s = new Student();
                 s.setSid(rs.getString("sid"));
                 s.setSimage(rs.getString("simage"));
                 s.setSname(rs.getString("sname"));
+                s.setClasses(c);
                 s.setAttendence(rs.getBoolean("attendance"));
                 stus.add(s);
             }
@@ -71,22 +77,20 @@ public class StudentDBContext extends DBContext<Student> {
         }
         return stus;
     }
-    
-    public void AttendanceBySid(boolean attendance, String sid){
+
+    public void AttendanceBySid(boolean attendance, String sid) {
         try {
-            String sql = "UPDATE [Student]\n" +
-                         "   SET [attendance] = ?\n" +
-                         " WHERE sid = ?;";
+            String sql = "UPDATE [Student]\n"
+                    + "   SET [attendance] = ?\n"
+                    + " WHERE sid = ?;";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setBoolean(1, attendance);
-            stm.setString(2, sid);           
+            stm.setString(2, sid);
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
 
     @Override
     public ArrayList<Student> list() {
@@ -107,6 +111,7 @@ public class StudentDBContext extends DBContext<Student> {
         }
         return stus;
     }
+
     @Override
     public Student get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -119,7 +124,7 @@ public class StudentDBContext extends DBContext<Student> {
 
     @Override
     public void update(Student model) {
-        
+
     }
 
     @Override
