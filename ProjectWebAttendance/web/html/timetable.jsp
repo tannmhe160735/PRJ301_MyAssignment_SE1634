@@ -40,43 +40,49 @@
                 <h1>FPT University Academic Portal</h1>
             </div>
         </div>
-
+        <div class="campus" style="text-align: center;">
+            Campus:<select name="">
+                <option>FU-HL</option>
+            </select><br>
+        </div>
+        <div class="lecture" style="text-align: center;">
+            <form action="viewclass" method="POST">
+                Lecture:<input type="text" name="teacher" value="" />
+                <input type="submit" value="View" />
+            </form>
+        </div>
         <div class="activity">
-            <h2 class="activity-title">Activities for ${sessionScope.account.name}</h2>
-            <div class="activity-note">
-            <p>
-                <b>
-                    Note: 
-                </b>
-                These activities do not include extra-curriculum activities, such as club activities ...
-            </p>
-            <p>
-                <b>
-                    Chú thích:
-                </b>
-                Các hoạt động trong bảng dưới không bao gồm hoạt động ngoại khóa, ví dụ như hoạt động câu lạc bộ ... 
-            </p>
-            <p>
-                Các phòng bắt đầu bằng AL thuộc tòa nhà Alpha. VD: AL...<br>
-                Các phòng bắt đầu bằng BE thuộc tòa nhà Beta. VD: BE,..<br>
-                Các phòng bắt đầu bằng G thuộc tòa nhà Gamma. VD: G201,...<br>
-                Các phòng tập bằng đầu bằng R thuộc khu vực sân tập Vovinam.<br>
-                Các phòng bắt đầu bằng DE thuộc tòa nhà Delta. VD: DE,..<br>
-                Little UK (LUK) thuộc tầng 5 tòa nhà Delta<br>
-            </p>    
-            </div>
+            
             <div class="activity-table">
-                <table style="width:100%">
+                <table style="width:100%" border="1">
                     <thead style="background-color: #39ace7; color: white;">
                     <tr>
-                        <th>Slot</th>
-                        <th>MON</th>
+                        <th rowspan="2" style="text-align: start;">
+                            YEAR<select name="year">
+                                <option>2022</option>
+                                <option>2021</option>
+                            </select><br>
+                            WEEK<select name="WEEK">
+                                <option>03/07 To 09/07</option>
+                                <option>10/07 To 16/07</option>
+                            </select>
+                        </th>
+                        <td>MON</td>           
                         <th>TUE</th>
                         <th>WED</th>
                         <th>THU</th>
                         <th>FRI</th>
                         <th>SAT</th>
                         <th>SUN</th>
+                    </tr>
+                    <tr>
+                        <td>03/07</td>
+                        <td>03/07</td>
+                        <td>03/07</td>
+                        <td>03/07</td>
+                        <td>03/07</td>
+                        <td>03/07</td>
+                        <td>03/07</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -163,19 +169,6 @@
                 </tbody>
             </table>
             </div>
-            <div class="activity-second-note">
-                <p>
-                <b>
-                    More note / Chú thích thêm:
-                </b>
-            </p>
-
-            <ul>
-                <li>(<font color="green">attended</font>) ${sessionScope.account.name} had attended this activity</li>
-                <li>(<font color="red">absent</font>) ${sessionScope.account.name} had NOT attended this activity</li>
-                <li>(<font>-</font>) no data was given / chưa có dữ liệu</li>
-            </ul>
-            </div>           
         </div>
 
         <div id="footer">
