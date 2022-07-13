@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Login;
+import model.Account;
 
 /**
  *
@@ -72,7 +72,7 @@ public class LoginController extends HttpServlet {
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         LoginDBContext db = new LoginDBContext();
-        Login account = db.getAccountByUsernamePassword(user, pass);      
+        Account account = db.getAccountByUsernamePassword(user, pass);      
         request.setAttribute("account", account);
         if(account != null)
         {   

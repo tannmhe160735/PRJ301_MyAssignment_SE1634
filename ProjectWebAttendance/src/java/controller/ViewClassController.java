@@ -5,7 +5,7 @@
 
 package controller;
 
-import dal.ClassDBContext;
+import dal.AttendanceDBContext;
 import dal.StudentDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,7 +13,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import java.util.ArrayList;
+import model.Attendance;
 import model.Student;
 
 /**
@@ -57,10 +59,11 @@ public class ViewClassController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String cid = request.getParameter("cid");
-        StudentDBContext Studb = new StudentDBContext();
-        ArrayList<Student> stus = Studb.listByCLass(cid);
-        request.setAttribute("stus", stus);
+        String groupId = request.getParameter("groupId");
+        Date date = Date.valueOf(request.getParameter("date"));
+        AttendanceDBContext aDB = new AttendanceDBContext();
+        ArrayList<Attendance> attends = aDB.listByClassDate(groupId, date);
+        request.setAttribute("attends", attends);
         request.getRequestDispatcher("html/viewclass.jsp").forward(request, response);
     } 
 

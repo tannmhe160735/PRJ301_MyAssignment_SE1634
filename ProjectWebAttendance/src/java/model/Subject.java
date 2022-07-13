@@ -9,21 +9,21 @@ package model;
  * @author minht
  */
 public class Subject {
-    private String suid;
+    private String subjectId;
 
     public Subject() {
     }
 
-    public Subject(String suid) {
-        this.suid = suid;
+    public Subject(String subjectId) {
+        this.subjectId = subjectId;
     }
 
-    public String getSuid() {
-        return suid;
+    public String getSubjectId() {
+        return subjectId;
     }
 
-    public void setSuid(String suid) {
-        this.suid = suid;
+    public void setSubjectId(String subjectId) {
+        this.subjectId = subjectId;
     }
     
     

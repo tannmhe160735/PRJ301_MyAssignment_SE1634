@@ -4,6 +4,7 @@
     Author     : minht
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -26,7 +27,7 @@
             <label for="show-menu" class="close"><span class="fa fa-times"></label>
             <ul id="menu">
                 <li><a class="active" href="home">Home</a></li>
-                <li><a href="#">${sessionScope.account.name}</a></li>
+                <li><a href="#">${sessionScope.account.displayName}</a></li>
                 <li><a href="login">Sign out</a></li>
                 <!--            <li><a href="#">Archive</a></li>
                                 <li><a href="#">Empty</a></li>
@@ -52,122 +53,63 @@
             </form>
         </div>
         <div class="activity">
-            
+
             <div class="activity-table">
                 <table style="width:100%" border="1">
                     <thead style="background-color: #39ace7; color: white;">
-                    <tr>
-                        <th rowspan="2" style="text-align: start;">
-                            YEAR<select name="year">
-                                <option>2022</option>
-                                <option>2021</option>
-                            </select><br>
-                            WEEK<select name="WEEK">
-                                <option>03/07 To 09/07</option>
-                                <option>10/07 To 16/07</option>
-                            </select>
-                        </th>
-                        <td>MON</td>           
-                        <th>TUE</th>
-                        <th>WED</th>
-                        <th>THU</th>
-                        <th>FRI</th>
-                        <th>SAT</th>
-                        <th>SUN</th>
-                    </tr>
-                    <tr>
-                        <td>03/07</td>
-                        <td>03/07</td>
-                        <td>03/07</td>
-                        <td>03/07</td>
-                        <td>03/07</td>
-                        <td>03/07</td>
-                        <td>03/07</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Slot 1</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>Slot 2</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Slot 3</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Slot 4</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Slot 5</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Slot 6</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Slot 7</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Slot 8</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>               
-                </tbody>
-            </table>
+                        <tr>
+                            <th rowspan="2" style="text-align: start;">
+                                YEAR<select name="year">
+                                    <option>2022</option>
+                                    <option>2021</option>
+                                </select><br>
+                                WEEK<select name="WEEK">
+                                    <option>03/07 To 09/07</option>
+                                    <option>10/07 To 16/07</option>
+                                </select>
+                            </th>
+                            <td>MON</td>           
+                            <th>TUE</th>
+                            <th>WED</th>
+                            <th>THU</th>
+                            <th>FRI</th>
+                            <th>SAT</th>
+                            <th>SUN</th>
+                        </tr>
+                        <tr>
+                            <c:forEach items="${requestScope.date}" var="d">
+                                <td>${d.date}</td>
+                            </c:forEach>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${requestScope.slot}" var="s">                           
+                            <tr>
+                                <td>${s.slot}</td>
+                                <c:forEach items="${requestScope.attenFTs}" var="a">
+                                    <c:if test="${s.slot eq a.slot}">
+                                        <c:if test="${a.subject eq null}">
+                                            <td>-</td>
+                                        </c:if>
+                                        <c:if test="${a.subject ne null}">
+                                            <td>${a.subject}<br>
+                                                ${a.group}<br>
+                                                <c:if test="${a.taken ne null}">
+                                                    <a style="color: red;">(not yet)</a>
+                                                </c:if>
+                                                <c:if test="${a.taken eq null}">
+                                                    <a style="color: green;">(attended)</a>
+                                                </c:if>    
+                                            </td>
+                                            
+                                        </c:if>
+
+                                    </c:if>
+                                </c:forEach>
+                            </tr>
+                        </c:forEach>                                         
+                    </tbody>
+                </table>
             </div>
         </div>
 

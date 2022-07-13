@@ -27,7 +27,7 @@
             <label for="show-menu" class="close"><span class="fa fa-times"></label>
             <ul id="menu">
                 <li><a class="active" href="home">Home</a></li>
-                <li><a href="#">${sessionScope.account.name}</a></li>
+                <li><a href="#">${sessionScope.account.displayName}</a></li>
                 <li><a href="login">Sign out</a></li>
 <!--                <li><a href="#">Archive</a></li>
                 <li><a href="#">Empty</a></li>
@@ -49,10 +49,10 @@
             </div>
             <div class="Order-list">               
                     <a href="timetable?name=${sessionScope.account.username}">Weekly timetable</a><br>
-                    <c:if test="${sessionScope.account.idAdmin eq false}">
+                    <c:if test="${sessionScope.account.isAdmin eq false}">
                         <a href="attendanceview?sid=${sessionScope.account.username}">Attendance report</a>
                     </c:if>
-                    <c:if test="${sessionScope.account.idAdmin eq true}">
+                    <c:if test="${sessionScope.account.isAdmin eq true}">
                         <a href="takea?tid=${sessionScope.account.username}">Take Attendance</a><br>                        
                     </c:if>
                     

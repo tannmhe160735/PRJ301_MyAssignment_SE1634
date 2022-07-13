@@ -10,42 +10,34 @@ import java.sql.Date;
  *
  * @author minht
  */
-public class Attendance {
-    private int attendanceId;
-    private Student student;
+public class AttendanceFT {
+    private int AFTId;
     private Date date;
     private String group;
     private boolean taken;
     private String subject;
     private int slot;
+    private Teacher teacher;
 
-    public Attendance() {
+    public AttendanceFT() {
     }
 
-    public Attendance(int attendanceId, Student student, Date date, String group, boolean taken, String subject, int slot) {
-        this.attendanceId = attendanceId;
-        this.student = student;
+    public AttendanceFT(int AFTId, Date date, String group, boolean taken, String subject, int slot, Teacher teacher) {
+        this.AFTId = AFTId;
         this.date = date;
         this.group = group;
         this.taken = taken;
         this.subject = subject;
         this.slot = slot;
+        this.teacher = teacher;
     }
 
-    public int getAttendanceId() {
-        return attendanceId;
+    public int getAFTId() {
+        return AFTId;
     }
 
-    public void setAttendanceId(int attendanceId) {
-        this.attendanceId = attendanceId;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setAFTId(int AFTId) {
+        this.AFTId = AFTId;
     }
 
     public Date getDate() {
@@ -87,6 +79,16 @@ public class Attendance {
     public void setSlot(int slot) {
         this.slot = slot;
     }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+   
     
     
 }

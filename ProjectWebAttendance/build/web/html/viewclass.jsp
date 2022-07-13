@@ -27,7 +27,7 @@
             <label for="show-menu" class="close"><span class="fa fa-times"></label>
             <ul id="menu">
                 <li><a class="active" href="home">Home</a></li>
-                <li><a href="#">${sessionScope.account.name}</a></li>
+                <li><a href="#">${sessionScope.account.username}</a></li>
                 <li><a href="login">Sign out</a></li>
                 <!--            <li><a href="#">Archive</a></li>
                                 <li><a href="#">Empty</a></li>
@@ -41,7 +41,7 @@
                 <h1>FPT University Academic Portal</h1>
             </div>
         </div>
-        <h2 class="take-attendance-title" style="text-align: center;">View class of ${sessionScope.account.name}</h2>
+        <h2 class="take-attendance-title" style="text-align: center;">View class of ${sessionScope.account.username}</h2>
 
         <table border="1" style="width: 80%; margin: auto; margin-top: 20px; margin-bottom: 20px;">
             <thead>
@@ -54,16 +54,16 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${requestScope.stus}" var="s">
+                <c:forEach items="${requestScope.attends}" var="a">
                         <tr class="a-class">
-                            <td>${s.sid}</td>
-                            <td><img src="${s.simage}" style="width: 120px; height: 150px"/></td>
-                            <td>${s.sname}</td>
-                            <td>${s.classes.cname}</td>
-                            <c:if test="${s.attendence eq true}">
+                            <td>${a.student.studentId}</td>
+                            <td><img src="${a.student.image}" style="width: 120px; height: 150px"/></td>
+                            <td>${a.student.studentName}</td>
+                            <td>${a.group}</td>
+                            <c:if test="${a.taken eq true}">
                                 <td style="color: green;">attended</td>
                             </c:if>
-                            <c:if test="${s.attendence eq false}">
+                            <c:if test="${a.taken eq false}">
                                 <td style="color: red;">absent</td>
                             </c:if>
                         </tr> 

@@ -11,69 +11,31 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Student;
-import model.Teacher;
-import model.Class;
 
 /**
  *
  * @author minht
  */
 public class StudentDBContext extends DBContext<Student> {
+    
 
-    public ArrayList<Class> listBySname(String sname) {
-        ArrayList<Class> classes = new ArrayList<>();
-        try {
-            String sql = "select * from Class c, Teacher t, Student s\n"
-                    + "where c.Teacher = t.tid and c.cid = s.class and s.sname = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, sname);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Teacher t = new Teacher();
-                t.setTid(rs.getString("tid"));
-                t.setTname(rs.getString("tname"));
-                Class c = new model.Class();
-                c.setCid(rs.getString("cid"));
-                c.setCname(rs.getString("cname"));
-                c.setTeacher(t);
-                Student s = new Student();
-                s.setSid(rs.getString("sid"));
-                s.setSimage(rs.getString("simage"));
-                s.setSname(rs.getString("sname"));
-                s.setClasses(c);
-                s.setAttendence(rs.getBoolean("attendance"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ClassDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return classes;
-    }
-
-    public ArrayList<Student> listByCLass(String cid) {
+    public ArrayList<Student> listByCLass(String classId) {
         ArrayList<Student> stus = new ArrayList<>();
-        ArrayList<Class> cls = new ArrayList<>();
         try {
-            String sql = "select s.sid, s.simage, s.sname, s.class, s.attendance, c.cid, c.cname\n"
-                    + "from Student s, Class c\n"
-                    + "where s.class = c.cid and c.cid = ?";
+            String sql = "select studentId, image, classId, studentName from Student S where S.classId = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, cid);
+            stm.setString(1, classId);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                Class c = new Class();
-                c.setCid(rs.getString("cid"));
-                c.setCname(rs.getString("cname"));
-                cls.add(c);
                 Student s = new Student();
-                s.setSid(rs.getString("sid"));
-                s.setSimage(rs.getString("simage"));
-                s.setSname(rs.getString("sname"));
-                s.setClasses(c);
-                s.setAttendence(rs.getBoolean("attendance"));
+                s.setStudentId(rs.getString("studentId"));
+                s.setImage(rs.getString("image"));
+                s.setClassId(rs.getString("classId"));
+                s.setStudentName(rs.getString("studentName"));
                 stus.add(s);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClassDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return stus;
     }
@@ -94,22 +56,7 @@ public class StudentDBContext extends DBContext<Student> {
 
     @Override
     public ArrayList<Student> list() {
-        ArrayList<Student> stus = new ArrayList<>();
-        try {
-            String sql = "select * from Student where sid = 'tannmhe160735'";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
-            while (rs.next()) {
-                Student s = new Student();
-                s.setSid(rs.getString("sid"));
-                s.setSimage(rs.getString("simage"));
-                s.setSname(rs.getString("sname"));
-                stus.add(s);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ClassDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return stus;
+        return null;
     }
 
     @Override

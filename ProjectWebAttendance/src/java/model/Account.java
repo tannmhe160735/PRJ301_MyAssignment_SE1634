@@ -8,20 +8,20 @@ package model;
  *
  * @author minht
  */
-public class Login {
+public class Account {
     private String username;
     private String password;
-    private boolean idAdmin;
-    private String name;
+    private boolean isAdmin;
+    private String displayName;
 
-    public Login() {
+    public Account() {
     }
 
-    public Login(String username, String password, boolean idAdmin, String name) {
+    public Account(String username, String password, boolean isAdmin, String displayName) {
         this.username = username;
         this.password = password;
-        this.idAdmin = idAdmin;
-        this.name = name;
+        this.isAdmin = isAdmin;
+        this.displayName = displayName;
     }
 
     public String getUsername() {
@@ -40,21 +40,23 @@ public class Login {
         this.password = password;
     }
 
-    public boolean isIdAdmin() {
-        return idAdmin;
+    public boolean isIsAdmin() {
+        return isAdmin;
     }
 
-    public void setIdAdmin(boolean idAdmin) {
-        this.idAdmin = idAdmin;
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
-    public String getName() {
-        return name;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
+
+
     
     
     

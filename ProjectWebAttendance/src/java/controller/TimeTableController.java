@@ -5,6 +5,7 @@
 
 package controller;
 
+import dal.AttendanceFTDBContext;
 import dal.StudentDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +13,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import model.AttendanceFT;
 
 /**
  *
@@ -54,9 +57,14 @@ public class TimeTableController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String sname = request.getParameter("username");
-        StudentDBContext StuDB = new StudentDBContext();
-        request.setAttribute("stu", StuDB.listBySname(sname));
+        String name = request.getParameter("name");
+        AttendanceFTDBContext aft = new AttendanceFTDBContext();
+        ArrayList<AttendanceFT> attenFTs = aft.listbyteacherId(name);
+        ArrayList<AttendanceFT> date = aft.listDatebyteacherId(name);
+        ArrayList<AttendanceFT> slot = aft.listSlotbyteacherId(name);
+        request.setAttribute("slot", slot);
+        request.setAttribute("date", date);
+        request.setAttribute("attenFTs", attenFTs);
         request.getRequestDispatcher("html/timetable.jsp").forward(request, response);
     } 
 

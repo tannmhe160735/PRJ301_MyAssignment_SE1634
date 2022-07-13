@@ -5,17 +5,19 @@
 
 package controller;
 
-import dal.ClassDBContext;
-import dal.StudentDBContext;
+import dal.AttendanceFTDBContext;
+import dal.GroupDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import java.util.ArrayList;
-import model.Class;
-import model.Student;
+import model.AttendanceFT;
+import model.Group;
+
 
 /**
  *
@@ -58,10 +60,10 @@ public class TakeAttendanceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String tid = request.getParameter("tid");
-        ClassDBContext Cdb = new ClassDBContext();
-        ArrayList<Class> classes = Cdb.listByTid(tid);
-        request.setAttribute("classes", classes);
+        String teacherId = request.getParameter("tid");
+        AttendanceFTDBContext aDB = new AttendanceFTDBContext();
+        ArrayList<AttendanceFT> date = aDB.listDatebyteacherId(teacherId);
+        request.setAttribute("date", date);
         request.getRequestDispatcher("html/takeattendance.jsp").forward(request, response);
     } 
 
@@ -75,7 +77,16 @@ public class TakeAttendanceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String teacherId = request.getParameter("tid");
+        AttendanceFTDBContext aDB = new AttendanceFTDBContext();
+        ArrayList<AttendanceFT> date = aDB.listDatebyteacherId(teacherId);
+        request.setAttribute("date", date);
+        Date day = Date.valueOf(request.getParameter("date"));
+        GroupDBContext gDB = new GroupDBContext();
+        ArrayList<Group> groups = gDB.listByTeacheridDate(teacherId, day);
+        request.setAttribute("thatDay", day);
+        request.setAttribute("groups", groups);
+        request.getRequestDispatcher("html/takeattendance.jsp").forward(request, response);
     }
 
     /** 

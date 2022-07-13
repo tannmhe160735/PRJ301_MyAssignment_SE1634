@@ -9,32 +9,34 @@ package model;
  * @author minht
  */
 public class Teacher {
-    private String tid;
-    private String tname;
+    private String teacherId;
+    private String teacherName;
 
     public Teacher() {
     }
 
-    public Teacher(String tid, String tname) {
-        this.tid = tid;
-        this.tname = tname;
+    public Teacher(String teacherId, String teacherName) {
+        this.teacherId = teacherId;
+        this.teacherName = teacherName;
     }
 
-    public String getTid() {
-        return tid;
+    public String getTeacherId() {
+        return teacherId;
     }
 
-    public void setTid(String tid) {
-        this.tid = tid;
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
     }
 
-    public String getTname() {
-        return tname;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setTname(String tname) {
-        this.tname = tname;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
+
+    
 
     
     

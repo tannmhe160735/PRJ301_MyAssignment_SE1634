@@ -4,6 +4,7 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,34 +12,43 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Attendance;
+import model.AttendanceFT;
+import model.Student;
 
 /**
  *
  * @author minht
  */
-public class AttendanceDBContext extends DBContext<Attendance>{
+public class AttendanceDBContext extends DBContext<Attendance> {
 
-    public ArrayList<Attendance> listbysid(String sid) {
-        ArrayList<Attendance> attens = new ArrayList<>();
+    public ArrayList<Attendance> listByClassDate(String group, Date date) {
+        ArrayList<Attendance> attendances = new ArrayList<>();
         try {
-            String sql = "select * from Subject s, Attendance a, Student stu, Class c, Teacher t\n" +
-"where s.suid = a.suid and a.sid = stu.sid and c.Teacher = t.tid and stu.class = c.cid and stu.sid = ?";
+            String sql = "select A.class, A.taken, S.classId, S.image, S.studentId, S.studentName \n"
+                    + "from Attendance A , Student S \n"
+                    + "where A.student = S.studentId and S.classId = ? and date = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, sid);
+            stm.setString(1, group);
+            stm.setDate(2, date);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Attendance a = new Attendance();
-                a.setAid(rs.getInt("aid"));
-                a.setDate(rs.getDate("date"));
-                a.setRoom(rs.getString("room"));
-                attens.add(a);
+                a.setTaken(rs.getBoolean("taken"));
+                a.setGroup(rs.getString("class"));
+                Student s = new Student();
+                s.setClassId(rs.getString("classId"));
+                s.setImage(rs.getString("image"));
+                s.setStudentId(rs.getString("studentId"));
+                s.setStudentName(rs.getString("studentName"));
+                a.setStudent(s);
+                attendances.add(a);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return attens;
+        return attendances;
     }
-    
+
     @Override
     public ArrayList<Attendance> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -63,5 +73,5 @@ public class AttendanceDBContext extends DBContext<Attendance>{
     public void delete(Attendance model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

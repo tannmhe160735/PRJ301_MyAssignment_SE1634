@@ -9,63 +9,54 @@ package model;
  * @author minht
  */
 public class Student {
-    private String sid;
-    private String simage;
-    private String sname;
-    private Class classes;
-    private boolean attendence;
+    private String studentId;
+    private String image;
+    private String classId;
+    private String studentName;
 
     public Student() {
     }
 
-    public Student(String sid, String simage, String sname, Class classes, boolean attendence) {
-        this.sid = sid;
-        this.simage = simage;
-        this.sname = sname;
-        this.classes = classes;
-        this.attendence = attendence;
+    public Student(String studentId, String image, String classId, String studentName) {
+        this.studentId = studentId;
+        this.image = image;
+        this.classId = classId;
+        this.studentName = studentName;
     }
 
-    public String getSid() {
-        return sid;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setSid(String sid) {
-        this.sid = sid;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
-    public String getSimage() {
-        return simage;
+    public String getImage() {
+        return image;
     }
 
-    public void setSimage(String simage) {
-        this.simage = simage;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getSname() {
-        return sname;
+    public String getClassId() {
+        return classId;
     }
 
-    public void setSname(String sname) {
-        this.sname = sname;
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 
-    public Class getClasses() {
-        return classes;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setClasses(Class classes) {
-        this.classes = classes;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
-    public boolean isAttendence() {
-        return attendence;
-    }
-
-    public void setAttendence(boolean attendence) {
-        this.attendence = attendence;
-    }
-
+    
     
     
 }
