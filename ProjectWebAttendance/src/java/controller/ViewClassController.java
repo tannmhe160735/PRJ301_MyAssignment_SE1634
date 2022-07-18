@@ -61,8 +61,9 @@ public class ViewClassController extends HttpServlet {
     throws ServletException, IOException {
         String groupId = request.getParameter("groupId");
         Date date = Date.valueOf(request.getParameter("date"));
+        int slot = Integer.parseInt(request.getParameter("slot"));
         AttendanceDBContext aDB = new AttendanceDBContext();
-        ArrayList<Attendance> attends = aDB.listByClassDate(groupId, date);
+        ArrayList<Attendance> attends = aDB.listByClassDate(groupId, date, slot);
         request.setAttribute("attends", attends);
         request.getRequestDispatcher("html/viewclass.jsp").forward(request, response);
     } 

@@ -5,6 +5,7 @@
 
 package controller;
 
+import dal.AttendanceDBContext;
 import dal.AttendanceFTDBContext;
 import dal.StudentDBContext;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import model.Attendance;
 import model.AttendanceFT;
 
 /**
@@ -57,15 +59,32 @@ public class TimeTableController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String name = request.getParameter("name");
-        AttendanceFTDBContext aft = new AttendanceFTDBContext();
-        ArrayList<AttendanceFT> attenFTs = aft.listbyteacherId(name);
-        ArrayList<AttendanceFT> date = aft.listDatebyteacherId(name);
-        ArrayList<AttendanceFT> slot = aft.listSlotbyteacherId(name);
-        request.setAttribute("slot", slot);
-        request.setAttribute("date", date);
-        request.setAttribute("attenFTs", attenFTs);
-        request.getRequestDispatcher("html/timetable.jsp").forward(request, response);
+        Boolean isAdmin = Boolean.valueOf(request.getParameter("isAdmin"));
+        request.setAttribute("isAdmin", isAdmin);
+        if(isAdmin == true){
+            String teacherId = request.getParameter("teacherId");
+            AttendanceFTDBContext aft = new AttendanceFTDBContext();
+            ArrayList<AttendanceFT> attenFTs = aft.listbyteacherId(teacherId);
+            ArrayList<AttendanceFT> date = aft.listDatebyteacherId(teacherId);
+            ArrayList<AttendanceFT> slot = aft.listSlotbyteacherId(teacherId);
+            request.setAttribute("slot", slot);
+            request.setAttribute("date", date);
+            request.setAttribute("attenFTs", attenFTs);
+            request.getRequestDispatcher("html/timetable.jsp").forward(request, response);
+        }else{
+            String studentId = request.getParameter("studentId");
+            AttendanceDBContext aft = new AttendanceDBContext();
+            ArrayList<Attendance> attens = aft.listbyteacherId(studentId);
+            ArrayList<Attendance> date = aft.listDatebyteacherId(studentId);
+            ArrayList<Attendance> slot = aft.listSlotbyteacherId(studentId);
+            request.setAttribute("slot", slot);
+            request.setAttribute("date", date);
+            request.setAttribute("attenFTs", attens);
+            request.getRequestDispatcher("html/timetable.jsp").forward(request, response);
+        }
+        
+        
+
     } 
 
     /** 
@@ -78,7 +97,17 @@ public class TimeTableController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        Boolean isAdmin = Boolean.valueOf(request.getParameter("isAdmin"));
+        request.setAttribute("isAdmin", isAdmin);
+        String teacherId = request.getParameter("teacherId");
+        AttendanceFTDBContext aft = new AttendanceFTDBContext();
+        ArrayList<AttendanceFT> attenFTs = aft.listbyteacherId(teacherId);
+        ArrayList<AttendanceFT> date = aft.listDatebyteacherId(teacherId);
+        ArrayList<AttendanceFT> slot = aft.listSlotbyteacherId(teacherId);
+        request.setAttribute("slot", slot);
+        request.setAttribute("date", date);
+        request.setAttribute("attenFTs", attenFTs);
+        request.getRequestDispatcher("html/timetable.jsp").forward(request, response);
     }
 
     /** 

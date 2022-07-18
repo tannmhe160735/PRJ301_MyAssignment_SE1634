@@ -4,6 +4,7 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,6 @@ import model.Student;
  * @author minht
  */
 public class StudentDBContext extends DBContext<Student> {
-    
 
     public ArrayList<Student> listByCLass(String classId) {
         ArrayList<Student> stus = new ArrayList<>();
@@ -38,7 +38,7 @@ public class StudentDBContext extends DBContext<Student> {
             Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return stus;
-    }
+    }  
 
     public void AttendanceBySid(boolean attendance, String sid) {
         try {

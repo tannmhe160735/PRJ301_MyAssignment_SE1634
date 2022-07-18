@@ -5,6 +5,8 @@
 
 package controller;
 
+import dal.AttendanceDBContext;
+import dal.AttendanceFTDBContext;
 import dal.StudentDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Date;
 import java.util.ArrayList;
+import model.Attendance;
 import model.Student;
 
 /**
@@ -57,10 +60,14 @@ public class ListStudentController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String cid = request.getParameter("cid");
-        StudentDBContext Studb = new StudentDBContext();
-        ArrayList<Student> stus = Studb.listByCLass(cid);
-        request.setAttribute("stus", stus);
+        String groupId = request.getParameter("groupId");
+        Date date = Date.valueOf(request.getParameter("date"));
+        int slot = Integer.parseInt(request.getParameter("slot"));
+        request.setAttribute("thatGroup", groupId);
+        request.setAttribute("thatDay", date);
+        AttendanceDBContext aDB = new AttendanceDBContext();
+        ArrayList<Attendance> attends = aDB.listByClassDate(groupId, date, slot);
+        request.setAttribute("attends", attends);
         request.getRequestDispatcher("html/liststudent.jsp").forward(request, response);
     } 
 
@@ -74,13 +81,17 @@ public class ListStudentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        StudentDBContext Studb = new StudentDBContext();
+        AttendanceDBContext aDB = new AttendanceDBContext();
+        AttendanceFTDBContext aftDB = new AttendanceFTDBContext();
+        Date date = Date.valueOf(request.getParameter("date"));
         String[] indexs = request.getParameterValues("index");
         for (String index : indexs) {
-            String sid = request.getParameter("sid"+index);
-            boolean attendence = Boolean.parseBoolean(request.getParameter("attendence"+index));
-            Studb.AttendanceBySid(attendence, sid);
+            String studentId = request.getParameter("studentId"+index);
+            boolean taken = Boolean.parseBoolean(request.getParameter("taken"+index));
+            aDB.AttendanceBySid(taken, studentId, date);
         }
+        String groupId = request.getParameter("groupId");
+        aftDB.AttendanceFTByClass(groupId, date);
         request.getRequestDispatcher("html/home.jsp").forward(request, response);
         
     }

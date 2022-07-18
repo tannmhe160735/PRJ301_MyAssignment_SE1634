@@ -27,7 +27,7 @@
             <label for="show-menu" class="close"><span class="fa fa-times"></label>
             <ul id="menu">
                 <li><a class="active" href="home">Home</a></li>
-                <li><a href="#">${sessionScope.account.name}</a></li>
+                <li><a href="#">${sessionScope.account.displayName}</a></li>
                 <li><a href="login">Sign out</a></li>
                 <!--                <li><a href="#">Archive</a></li>
                                 <li><a href="#">Empty</a></li>
@@ -43,10 +43,9 @@
         </div>
 
     </body>
-    <h2 class="take-attendance-title" style="text-align: center;">View student in class of ${sessionScope.account.name}</h2>
+    <h2 class="take-attendance-title" style="text-align: center;">View student in class of ${sessionScope.account.displayName}</h2>
     <div class="list-table">
-        <form action="liststu" method="POST">
-
+        <form action="liststu" method="POST">           
             <table class="table" border="1">
                     <thead style="background-color: #39ace7; ">
                         <th>ID</th>
@@ -54,17 +53,20 @@
                         <th>Name</th>
                         <th>Attendance</th>
                     </thead>
-                    <c:forEach items="${requestScope.stus}" var="s" varStatus="loop">
+                    <c:forEach items="${requestScope.attends}" var="a" varStatus="loop">
                         <tr class="a-class">
-                            <td>${s.sid}<input type="hidden" name="sid${loop.index}" value="${s.sid}"></td>
-                            <td><img src="${s.simage}" style="width: 120px; height: 150px"/></td>
-                            <td>${s.sname}</td>
-                            <td><input type="radio" name="attendence${loop.index}" value="true" /> <a style="color: green">attend</a>
-                                <input type="radio" name="attendence${loop.index}" value="false" /> <a style="color: red">absent</a></td>
+                            <td>${a.student.studentId}<input type="hidden" name="studentId${loop.index}" value="${a.student.studentId}"></td>
+                            <td><img src="${a.student.image}" style="width: 120px; height: 150px"/></td>
+                            <td>${a.student.studentName}</td>
+                            <td><input type="radio" name="taken${loop.index}" value="true" /> <a style="color: green">attend</a>
+                                <input type="radio" name="taken${loop.index}" value="false" /> <a style="color: red">absent</a></td>
                         </tr> 
                         <input type="hidden" name="index" value="${loop.index}">
+                        <input type="hidden" name="date" value="${requestScope.thatDay}">
+                        <input type="hidden" name="groupId" value="${requestScope.thatGroup}">
                     </c:forEach>               
             </table><br>
+            
             <div class="button">
                 <input type="submit" value="Submit" style="padding-left: 20px; padding-right: 20px;" />
             </div>

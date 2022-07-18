@@ -47,15 +47,16 @@
             <div class="Order-title">
                 <h3 style="color: #56baed;">Reports</h3>
             </div>
-            <div class="Order-list">               
-                    <a href="timetable?name=${sessionScope.account.username}">Weekly timetable</a><br>
-                    <c:if test="${sessionScope.account.isAdmin eq false}">
-                        <a href="attendanceview?sid=${sessionScope.account.username}">Attendance report</a>
+            <div class="Order-list">        
+                    <c:if test="${sessionScope.account.isAdmin eq true}">
+                        <a href="timetable?teacherId=${sessionScope.account.username}&isAdmin=${sessionScope.account.isAdmin}">Weekly timetable</a><br>  
+                    </c:if>
+                    <c:if test="${sessionScope.account.isAdmin ne true}">
+                        <a href="timetable?studentId=${sessionScope.account.username}&isAdmin=${sessionScope.account.isAdmin}">Weekly timetable</a><br>                        
                     </c:if>
                     <c:if test="${sessionScope.account.isAdmin eq true}">
                         <a href="takea?tid=${sessionScope.account.username}">Take Attendance</a><br>                        
                     </c:if>
-                    
             </div>                
         </div>
     

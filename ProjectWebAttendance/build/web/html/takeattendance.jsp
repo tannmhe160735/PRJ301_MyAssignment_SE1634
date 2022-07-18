@@ -68,8 +68,8 @@
                         <tbody>
                             <c:forEach items="${requestScope.groups}" var="g"  >
                                 <tr>
-                                    <td><a href="liststu?groupId=${g.groupId}">${g.groupId}</a></td>
-                                    <td><a href="viewc?groupId=${g.groupId}&date=${requestScope.thatDay}">${g.groupId}</a></td>
+                                    <td><a href="liststu?groupId=${g.group}&date=${requestScope.thatDay}&slot=${g.slot}">${g.group}</a></td>
+                                    <td><a href="viewc?groupId=${g.group}&date=${requestScope.thatDay}&slot=${g.slot}">${g.group}</a></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

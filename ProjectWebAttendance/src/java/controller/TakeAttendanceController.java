@@ -82,8 +82,7 @@ public class TakeAttendanceController extends HttpServlet {
         ArrayList<AttendanceFT> date = aDB.listDatebyteacherId(teacherId);
         request.setAttribute("date", date);
         Date day = Date.valueOf(request.getParameter("date"));
-        GroupDBContext gDB = new GroupDBContext();
-        ArrayList<Group> groups = gDB.listByTeacheridDate(teacherId, day);
+        ArrayList<AttendanceFT> groups = aDB.listByTeacheridDate(teacherId, day);
         request.setAttribute("thatDay", day);
         request.setAttribute("groups", groups);
         request.getRequestDispatcher("html/takeattendance.jsp").forward(request, response);

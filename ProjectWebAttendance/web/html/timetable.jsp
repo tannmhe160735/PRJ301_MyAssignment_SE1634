@@ -41,34 +41,40 @@
                 <h1>FPT University Academic Portal</h1>
             </div>
         </div>
-        <div class="campus" style="text-align: center;">
-            Campus:<select name="">
-                <option>FU-HL</option>
-            </select><br>
-        </div>
-        <div class="lecture" style="text-align: center;">
-            <form action="viewclass" method="POST">
-                Lecture:<input type="text" name="teacher" value="" />
-                <input type="submit" value="View" />
-            </form>
-        </div>
+        
+        <c:if test="${requestScope.isAdmin eq true}">
+            <div class="campus" style="text-align: center;">
+                Campus:<select name="">
+                    <option>FU-HL</option>
+                </select><br>
+            </div>
+            <div class="lecture" style="text-align: center;">
+                <form action="timetable" method="POST">
+                    Lecture:<input type="text" name="teacherId" value="" />
+                    <input type="submit" value="View" />
+                    <input type="hidden" name="isAdmin" value="${requestScope.isAdmin}">
+                </form>
+            </div>
+        </c:if>
+
         <div class="activity">
 
             <div class="activity-table">
                 <table style="width:100%" border="1">
                     <thead style="background-color: #39ace7; color: white;">
                         <tr>
-                            <th rowspan="2" style="text-align: start;">
-                                YEAR<select name="year">
-                                    <option>2022</option>
-                                    <option>2021</option>
-                                </select><br>
-                                WEEK<select name="WEEK">
-                                    <option>03/07 To 09/07</option>
-                                    <option>10/07 To 16/07</option>
-                                </select>
+                            <th rowspan="2" style="text-align: start;">                               
+                                   FROM <select name="from">
+                                    <c:forEach items="${requestScope.date}" var="d">
+                                        <option>${d.date}</option>
+                                    </c:forEach>
+                                </select><BR>
+                                TO <select name="to">
+                                    <c:forEach items="${requestScope.date}" var="d">
+                                        <option>${d.date}</option>
+                                    </c:forEach>
                             </th>
-                            <td>MON</td>           
+                            <th>MON</th>           
                             <th>TUE</th>
                             <th>WED</th>
                             <th>THU</th>
@@ -85,7 +91,7 @@
                     <tbody>
                         <c:forEach items="${requestScope.slot}" var="s">                           
                             <tr>
-                                <td>${s.slot}</td>
+                                <td>Slot ${s.slot}</td>
                                 <c:forEach items="${requestScope.attenFTs}" var="a">
                                     <c:if test="${s.slot eq a.slot}">
                                         <c:if test="${a.subject eq null}">
@@ -94,16 +100,14 @@
                                         <c:if test="${a.subject ne null}">
                                             <td>${a.subject}<br>
                                                 ${a.group}<br>
-                                                <c:if test="${a.taken ne null}">
+                                                <c:if test="${a.taken ne true}">
                                                     <a style="color: red;">(not yet)</a>
                                                 </c:if>
-                                                <c:if test="${a.taken eq null}">
+                                                <c:if test="${a.taken eq true}">
                                                     <a style="color: green;">(attended)</a>
                                                 </c:if>    
-                                            </td>
-                                            
+                                            </td>                                            
                                         </c:if>
-
                                     </c:if>
                                 </c:forEach>
                             </tr>

@@ -73,7 +73,6 @@ public class LoginController extends HttpServlet {
         String pass = request.getParameter("password");
         LoginDBContext db = new LoginDBContext();
         Account account = db.getAccountByUsernamePassword(user, pass);      
-        request.setAttribute("account", account);
         if(account != null)
         {   
             HttpSession session = request.getSession();

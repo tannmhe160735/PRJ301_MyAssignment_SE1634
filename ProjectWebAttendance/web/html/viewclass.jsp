@@ -27,7 +27,7 @@
             <label for="show-menu" class="close"><span class="fa fa-times"></label>
             <ul id="menu">
                 <li><a class="active" href="home">Home</a></li>
-                <li><a href="#">${sessionScope.account.username}</a></li>
+                <li><a href="#">${sessionScope.account.displayName}</a></li>
                 <li><a href="login">Sign out</a></li>
                 <!--            <li><a href="#">Archive</a></li>
                                 <li><a href="#">Empty</a></li>
@@ -41,7 +41,7 @@
                 <h1>FPT University Academic Portal</h1>
             </div>
         </div>
-        <h2 class="take-attendance-title" style="text-align: center;">View class of ${sessionScope.account.username}</h2>
+        <h2 class="take-attendance-title" style="text-align: center;">View class of ${sessionScope.account.displayName}</h2>
 
         <table border="1" style="width: 80%; margin: auto; margin-top: 20px; margin-bottom: 20px;">
             <thead>

@@ -18,27 +18,7 @@ import model.Group;
  *
  * @author minht
  */
-public class GroupDBContext extends DBContext<Group>{
-
-    public ArrayList<Group> listByTeacheridDate(String teacherId, Date date) {
-        ArrayList<Group> groups = new ArrayList<>();
-        try {
-            String sql = "select distinct G.groupId from [Group] G, AttendanceFT A where G.groupId = A.class and A.teacher = ? and A.date = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, teacherId);
-            stm.setDate(2, date);
-            ResultSet rs = stm.executeQuery();
-            while(rs.next())
-            {
-                Group g = new Group();
-                g.setGroupId(rs.getString("groupId"));
-                groups.add(g);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(GroupDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return groups;
-    }
+public class GroupDBContext extends DBContext<Group>{   
     
     @Override
     public ArrayList<Group> list() {     

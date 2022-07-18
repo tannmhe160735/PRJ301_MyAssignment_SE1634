@@ -4,6 +4,7 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,6 @@ import java.util.logging.Logger;
 import model.AttendanceFT;
 import model.Group;
 import model.Subject;
-
 
 /**
  *
@@ -38,7 +38,7 @@ public class AttendanceFTDBContext extends DBContext<AttendanceFT> {
         }
         return attendanceFT;
     }
-    
+
     public ArrayList<AttendanceFT> listSlotbyteacherId(String teacherId) {
         ArrayList<AttendanceFT> attendanceFT = new ArrayList<>();
         try {
@@ -56,7 +56,7 @@ public class AttendanceFTDBContext extends DBContext<AttendanceFT> {
         }
         return attendanceFT;
     }
-        
+
     public ArrayList<AttendanceFT> listbyteacherId(String teacherId) {
         ArrayList<AttendanceFT> attendanceFT = new ArrayList<>();
         try {
@@ -82,6 +82,43 @@ public class AttendanceFTDBContext extends DBContext<AttendanceFT> {
             Logger.getLogger(AttendanceFTDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return attendanceFT;
+    }
+
+    public void AttendanceFTByClass(String studentId, Date date) {
+        try {
+            String sql = "UPDATE [AttendanceFT]\n"
+                    + "   SET [taken] = 'true' \n"
+                    + " WHERE class = ? and date = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, studentId);
+            stm.setDate(2, date);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public ArrayList<AttendanceFT> listByTeacheridDate(String teacherId, Date date) {
+        ArrayList<AttendanceFT> Afts = new ArrayList<>();
+        try {
+            String sql = "select distinct A.class, A.slot \n"
+                    + "from [Group] G, AttendanceFT A \n"
+                    + "where G.groupId = A.class and A.teacher = ? and A.date = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, teacherId);
+            stm.setDate(2, date);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next())
+            {
+                AttendanceFT aft = new AttendanceFT();
+                aft.setGroup(rs.getString("class"));
+                aft.setSlot(rs.getInt("slot"));
+                Afts.add(aft);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GroupDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Afts;
     }
 
     @Override
